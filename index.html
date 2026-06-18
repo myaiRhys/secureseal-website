@@ -842,14 +842,12 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   100%{opacity:0;transform:translateY(var(--fall,150px)) scaleY(1.2)}
 }
 
-/* --- Animated gold "water-line" flowing into the guarantee --- */
-.guarantee{border-top:none}
-.water-edge{
-  position:absolute;top:0;left:0;width:200%;height:62px;
-  display:flex;z-index:3;animation:wave-flow 11s linear infinite;
+/* --- Angled diagonal cut into the guarantee band --- */
+.guarantee{
+  border-top:none;
+  clip-path:polygon(0 clamp(36px,6vw,72px), 100% 0, 100% 100%, 0 100%);
+  margin-top:-1px; /* avoid a hairline gap above the slant */
 }
-.water-edge svg{width:50%;height:62px;display:block}
-@keyframes wave-flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* --- Depth: card tilt + hover lift --- */
 .feature,.review,.surface,.step,.order-card{will-change:transform}
@@ -884,7 +882,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 .hero-copy,.tub-stage{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
 
 @media(prefers-reduced-motion:reduce){
-  .hero::before,.water-edge,.tub{animation:none}
+  .hero::before,.tub{animation:none}
   .rain-canvas,.beads{display:none}
 }
 </style>
@@ -1199,16 +1197,6 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 
 <!-- ============ GUARANTEE ============ -->
 <section class="section guarantee">
-  <div class="water-edge" aria-hidden="true">
-    <svg viewBox="0 0 1440 62" preserveAspectRatio="none">
-      <path fill="rgba(18,18,18,0.55)" d="M0,40 C200,18 380,60 560,40 C740,18 940,60 1120,40 C1300,20 1380,52 1440,40 L1440,0 L0,0 Z"/>
-      <path fill="#141414" d="M0,30 C180,62 360,2 540,30 C720,58 900,4 1080,30 C1260,56 1380,12 1440,30 L1440,0 L0,0 Z"/>
-    </svg>
-    <svg viewBox="0 0 1440 62" preserveAspectRatio="none">
-      <path fill="rgba(18,18,18,0.55)" d="M0,40 C200,18 380,60 560,40 C740,18 940,60 1120,40 C1300,20 1380,52 1440,40 L1440,0 L0,0 Z"/>
-      <path fill="#141414" d="M0,30 C180,62 360,2 540,30 C720,58 900,4 1080,30 C1260,56 1380,12 1440,30 L1440,0 L0,0 Z"/>
-    </svg>
-  </div>
   <div class="wrap reveal">
     <div class="seal"><span class="d">30</span><span class="day">Day</span></div>
     <span class="kicker" style="justify-content:center">Our Promise</span>

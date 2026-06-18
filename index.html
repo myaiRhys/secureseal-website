@@ -97,7 +97,7 @@
     {"@type":"Question","name":"What surfaces does SecureSeal work on?","acceptedAnswer":{"@type":"Answer","text":"Tents, rooftop tents, bell tents, awnings, caravan awnings, canvas, ripstop, PVC, tarps, gazebos, bakkie covers and trailer covers — plus any fabric seams or stitching. If it's woven fabric and you need it waterproof, SecureSeal is built for it."}},
     {"@type":"Question","name":"How long does SecureSeal take to cure?","acceptedAnswer":{"@type":"Answer","text":"Touch-dry within a few hours depending on temperature and humidity. We recommend leaving it overnight to fully cure into its flexible, UV-stable membrane before exposing it to rain."}},
     {"@type":"Question","name":"Will it crack or peel in the sun?","acceptedAnswer":{"@type":"Answer","text":"No. It's the same UV-stable formula used to seal shade-cloth seams in the field, and it stays flexible — so it moves with the fabric instead of going brittle and cracking. Proven over a decade across South Africa and Australia, zero cracks."}},
-    {"@type":"Question","name":"How much area does one 250g tub cover?","acceptedAnswer":{"@type":"Answer","text":"Coverage depends on the fabric weave and how heavy you apply it. One 250g tub comfortably handles the seams of a large tent or a full awning. For big canvas jobs, order a couple of tubs."}},
+    {"@type":"Question","name":"How much do I need for a full tent?","acceptedAnswer":{"@type":"Answer","text":"The 250g Seam Sealer is enough for a full 2–4 person canvas tent — all seams, stress points, and zip areas with a second coat on the most critical seams. For full surface waterproofing (not just seams), or for larger items like rooftop tent shells and carport awnings, go with the 500g Surface Shield. For large family tents or full canvas treatment, the 500g is the right choice."}},
     {"@type":"Question","name":"Is SecureSeal really made in South Africa?","acceptedAnswer":{"@type":"Answer","text":"Yes — designed, formulated and made in Cape Town by True Motives CC. Built and tested specifically for African conditions, not imported and hoped for the best."}},
     {"@type":"Question","name":"Do you ship across South Africa?","acceptedAnswer":{"@type":"Answer","text":"Yes. We ship SecureSeal nationwide across South Africa. Shipping is calculated at checkout based on your delivery address."}},
     {"@type":"Question","name":"What if SecureSeal doesn't work for me?","acceptedAnswer":{"@type":"Answer","text":"You're covered by our 30-day money-back guarantee — no questions asked. If SecureSeal doesn't hold up for you, we'll refund you."}}
@@ -449,7 +449,7 @@ h1,h2,h3,.display{
   background:var(--bg-secondary);
 }
 .trust-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(5,1fr);
 }
 .trust-item{
   padding:30px 24px;text-align:center;
@@ -572,6 +572,10 @@ h1,h2,h3,.display{
 .compare .yes{color:var(--gold);font-weight:700}
 .compare .no{color:var(--gray)}
 .compare tbody tr:last-child td{border-bottom:none}
+/* Coverage guide — brighter 500g (upsell) column + note */
+.compare thead th.us-bright{color:var(--gold-light);background:rgba(var(--gold-rgb),0.20);border-bottom:2px solid var(--gold)}
+.compare td.us-bright{background:rgba(var(--gold-rgb),0.12);color:var(--white);font-weight:600}
+.coverage-note{margin-top:18px;font-size:13px;color:var(--gray);max-width:760px}
 
 /* ---------- About ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -715,6 +719,15 @@ h1,h2,h3,.display{
 .order-benefits li .bt{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:17px;letter-spacing:0.02em}
 .order-benefits li .bd{font-size:13px;color:var(--off-white)}
 
+/* Two-SKU order layout */
+.order-intro{text-align:center;max-width:760px;margin:0 auto 26px}
+.order-benefits-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0 30px;margin:0 0 46px;list-style:none}
+.order-benefits-row li{border-bottom:none;border-top:1px solid var(--gold-faint);padding:18px 0}
+.order-products{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.order-col{position:relative;padding-top:44px}
+.order-card-badge{position:absolute;top:0;left:0;margin:0}
+.order-card .pdesc{font-size:14px;color:var(--off-white);line-height:1.6;margin:0 0 24px}
+
 /* ---------- Footer ---------- */
 footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padding:64px 0 30px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:48px}
@@ -778,6 +791,8 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   .hero-grid{grid-template-columns:1fr;gap:48px}
   .tub-stage{order:-1}
   .about-grid,.order-grid{grid-template-columns:1fr;gap:36px}
+  .order-products{grid-template-columns:1fr;gap:52px}
+  .order-benefits-row{grid-template-columns:1fr 1fr;gap:0 24px}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
   .trust-item:nth-child(2n){border-right:none}
   .trust-item{border-bottom:1px solid var(--gold-faint)}
@@ -787,7 +802,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 @media(max-width:480px){
   .wrap{padding:0 18px}
   .track-record{padding:30px 22px}
-  .reviews-grid,.steps,.features-grid,.surfaces{grid-template-columns:1fr}
+  .reviews-grid,.steps,.features-grid,.surfaces,.order-benefits-row{grid-template-columns:1fr}
   .feature{border-right:none}
   .surfaces{gap:12px}
   .stat-row{grid-template-columns:1fr;}
@@ -916,12 +931,13 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#how">How To Use</a></li>
+    <li><a href="#coverage">Coverage</a></li>
     <li><a href="#compare">Compare</a></li>
     <li><a href="#about">Our Story</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#order" class="btn">Buy Now — R199</a>
+    <a href="#order" class="btn">Buy Now — from R199</a>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -933,10 +949,11 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   <a href="#features">Features</a>
   <a href="#how">How To Use</a>
   <a href="#works">Works On</a>
+  <a href="#coverage">Coverage</a>
   <a href="#compare">Compare</a>
   <a href="#about">Our Story</a>
   <a href="#faq">FAQ</a>
-  <a href="#order" class="btn">Buy Now — R199</a>
+  <a href="#order" class="btn">Buy Now — from R199</a>
 </aside>
 
 <!-- ============ HERO ============ -->
@@ -949,7 +966,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
       <p class="hero-sub"><strong>Proven for over a decade across South Africa and Australia.</strong> SecureSeal is a UV-stable, flexible fabric waterproofer and seam sealer that permanently waterproofs <strong>tents, rooftop tents, awnings, canvas and tarps</strong> — the same formula used to seal shade-cloth seams, now available direct to you.</p>
       <div class="proof-pill"><span class="dot" aria-hidden="true"></span>Proven commercially for 10+ years · <strong>Now direct to you</strong></div>
       <div class="hero-cta">
-        <a href="#order" class="btn">Buy Now — R199</a>
+        <a href="#order" class="btn">Buy Now — from R199</a>
         <a href="#how" class="btn btn-ghost">How It Works</a>
       </div>
       <div class="hero-tags">
@@ -971,8 +988,9 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
         <div class="beads" id="beads" aria-hidden="true"></div>
       </div>
       <div class="price-badge">
+        <span class="lbl" style="margin-top:0;margin-bottom:3px">From</span>
         <span class="r">R</span><span class="amt">199</span>
-        <span class="lbl">250g Tub</span>
+        <span class="lbl">250g &amp; 500g available</span>
       </div>
     </div>
   </div>
@@ -985,6 +1003,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
     <div class="trust-item reveal"><span class="ic gold">⚑</span><span class="t">Made in South Africa</span><span class="d">Cape Town built</span></div>
     <div class="trust-item reveal"><span class="ic gold">✦</span><span class="t">Patent-Backed Formula</span><span class="d">Nobody else has it</span></div>
     <div class="trust-item reveal"><span class="ic gold">✓</span><span class="t">30-Day Guarantee</span><span class="d">No questions asked</span></div>
+    <div class="trust-item reveal"><span class="ic gold">◆</span><span class="t">250g from R199 · 500g from R349</span><span class="d">Two sizes available</span></div>
   </div>
 </section>
 
@@ -1094,6 +1113,37 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   </div>
 </section>
 
+<!-- ============ COVERAGE GUIDE ============ -->
+<section class="section" id="coverage">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Coverage Guide</span>
+      <h2>How much do I need?</h2>
+      <p>The 250g tub is your seam sealer — the right amount for tent seams, joins, and stress points. For full surface waterproofing of larger items, the 500g Surface Shield is what you need.</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="compare coverage-table">
+        <thead>
+          <tr>
+            <th>Application</th>
+            <th class="us">250g Seam Sealer</th>
+            <th class="us-bright">500g Surface Shield</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="feat">2–4 person tent seams</td><td class="us"><span class="yes">✓</span> Full tent + second coat on stress points</td><td class="us-bright"><span class="yes">✓</span> Full tent seams + full surface treatment</td></tr>
+          <tr><td class="feat">Rooftop tent seams</td><td class="us"><span class="yes">✓</span> Full seam seal</td><td class="us-bright"><span class="yes">✓</span> Seams + full shell treatment</td></tr>
+          <tr><td class="feat">Awning / carport seams</td><td class="us"><span class="yes">✓</span> Approx 15–20m linear</td><td class="us-bright"><span class="yes">✓</span> Seams + surface coat</td></tr>
+          <tr><td class="feat">Full canvas surface (flat)</td><td class="us"><span class="yes">✓</span> Approx 1.5m² single coat</td><td class="us-bright"><span class="yes">✓</span> Approx 3m² single coat</td></tr>
+          <tr><td class="feat">Shade cloth joins</td><td class="us"><span class="yes">✓</span> Approx 20–25m linear</td><td class="us-bright"><span class="yes">✓</span> Approx 40–50m linear</td></tr>
+          <tr><td class="feat">Campsite gazebos</td><td class="us"><span class="no">— Order multiples</span></td><td class="us-bright"><span class="yes">✓</span> 2–3 tubs per gazebo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="coverage-note reveal">Coverage based on 2 coats for full waterproofing. Fabric porosity and condition may affect coverage. When in doubt, go bigger.</p>
+  </div>
+</section>
+
 <!-- ============ COMPARISON ============ -->
 <section class="section hatch" id="compare">
   <div class="wrap">
@@ -1185,8 +1235,8 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
         <div class="faq-a"><p>No. That's the whole point. It's the same UV-stable formula used to seal shade-cloth seams in the field, and it stays flexible — so it moves with the fabric instead of going brittle and cracking. Over a decade proven across two continents, zero cracks.</p></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q">How much area does one 250g tub cover?<span class="pm"></span></button>
-        <div class="faq-a"><p>Coverage depends on the fabric weave and how heavy you apply it. One 250g tub comfortably handles the seams of a large tent or a full awning. For big canvas jobs, order a couple of tubs.</p></div>
+        <button class="faq-q">How much do I need for a full tent?<span class="pm"></span></button>
+        <div class="faq-a"><p>The 250g Seam Sealer is enough for a full 2–4 person canvas tent — all seams, stress points, and zip areas with a second coat on the most critical seams. For full surface waterproofing (not just seams), or for larger items like rooftop tent shells and carport awnings, go with the 500g Surface Shield. For large family tents or full canvas treatment, the 500g is the right choice.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Is it really made in South Africa?<span class="pm"></span></button>
@@ -1218,40 +1268,71 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 <!-- ============ ORDER ============ -->
 <section class="section order" id="order">
   <div class="wrap">
-    <div class="order-grid">
-      <div class="reveal">
-        <span class="kicker">Get Yours</span>
-        <h2 style="font-size:clamp(34px,5vw,52px);margin-bottom:20px">Seal it once. Stay dry for good.</h2>
-        <ul class="order-benefits">
-          <li><span class="ck">✓</span><div><div class="bt">Field-Proven Formula</div><div class="bd">10+ years across SA &amp; Australia — zero leaks, zero cracks.</div></div></li>
-          <li><span class="ck">✓</span><div><div class="bt">One Tub, Every Surface</div><div class="bd">Tents, awnings, canvas, tarps and seams.</div></div></li>
-          <li><span class="ck">✓</span><div><div class="bt">Made in South Africa</div><div class="bd">Built for African conditions in Cape Town.</div></div></li>
-          <li><span class="ck">✓</span><div><div class="bt">Risk-Free</div><div class="bd">30-day money-back guarantee, no questions asked.</div></div></li>
-        </ul>
+    <div class="order-intro reveal">
+      <span class="kicker" style="justify-content:center">Get Yours</span>
+      <h2 style="font-size:clamp(34px,5vw,52px);margin-bottom:20px">Seal it once. Stay dry for good.</h2>
+    </div>
+    <ul class="order-benefits order-benefits-row reveal">
+      <li><span class="ck">✓</span><div><div class="bt">Field-Proven Formula</div><div class="bd">10+ years across SA &amp; Australia — zero leaks, zero cracks.</div></div></li>
+      <li><span class="ck">✓</span><div><div class="bt">One Tub, Every Surface</div><div class="bd">Tents, awnings, canvas, tarps and seams.</div></div></li>
+      <li><span class="ck">✓</span><div><div class="bt">Made in South Africa</div><div class="bd">Built for African conditions in Cape Town.</div></div></li>
+      <li><span class="ck">✓</span><div><div class="bt">Risk-Free</div><div class="bd">30-day money-back guarantee, no questions asked.</div></div></li>
+    </ul>
+
+    <div class="order-products">
+      <div class="order-col reveal">
+        <div class="order-card" data-price="199" data-name="SecureSeal — Seam Sealer 250g">
+          <div class="pname display">Seam Sealer</div>
+          <div class="ptag">SecureSeal — Seam Sealer · 250g</div>
+          <div class="order-price"><span class="r">R</span><span class="amt">199</span><span class="ea">/ tub</span></div>
+          <div class="pdesc">For tent seams, awning joins, and rooftop tent seams. One tub does a full 2–4 person tent with second coat on stress points.</div>
+          <div class="incl">Includes VAT. Shipping calculated at checkout.</div>
+
+          <div class="qty-row">
+            <span class="qty-label">Quantity</span>
+            <div class="qty">
+              <button class="qty-minus" aria-label="Decrease quantity">−</button>
+              <input type="number" class="qty-input" value="1" min="1" max="99" aria-label="Quantity" />
+              <button class="qty-plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <div class="total-row">
+            <span class="lbl">Total</span>
+            <span class="val js-total">R199</span>
+          </div>
+
+          <button class="btn js-checkout">Add to Cart · Checkout</button>
+          <div class="pay-note"><span class="gold">⛉</span> Secure checkout via PayFast — coming soon</div>
+        </div>
       </div>
 
-      <div class="order-card reveal">
-        <div class="pname display">SecureSeal</div>
-        <div class="ptag">Fabric Waterproofer &amp; Seam Seal · 250g</div>
-        <div class="order-price"><span class="r">R</span><span class="amt">199</span><span class="ea">/ tub</span></div>
-        <div class="incl">Includes VAT. Shipping calculated at checkout.</div>
+      <div class="order-col reveal">
+        <div class="proof-pill order-card-badge"><span class="dot"></span>Best for large jobs</div>
+        <div class="order-card" data-price="349" data-name="SecureSeal — Surface Shield 500g">
+          <div class="pname display">Surface Shield</div>
+          <div class="ptag">SecureSeal — Surface Shield · 500g</div>
+          <div class="order-price"><span class="r">R</span><span class="amt">349</span><span class="ea">/ tub</span></div>
+          <div class="pdesc">For full canvas treatment, rooftop tent shells, carports, and awnings. Covers approx 1.5m² per coat.</div>
+          <div class="incl">Includes VAT. Shipping calculated at checkout.</div>
 
-        <div class="qty-row">
-          <span class="qty-label">Quantity</span>
-          <div class="qty">
-            <button id="qtyMinus" aria-label="Decrease quantity">−</button>
-            <input type="number" id="qtyInput" value="1" min="1" max="99" aria-label="Quantity" />
-            <button id="qtyPlus" aria-label="Increase quantity">+</button>
+          <div class="qty-row">
+            <span class="qty-label">Quantity</span>
+            <div class="qty">
+              <button class="qty-minus" aria-label="Decrease quantity">−</button>
+              <input type="number" class="qty-input" value="1" min="1" max="99" aria-label="Quantity" />
+              <button class="qty-plus" aria-label="Increase quantity">+</button>
+            </div>
           </div>
-        </div>
 
-        <div class="total-row">
-          <span class="lbl">Total</span>
-          <span class="val" id="total">R199</span>
-        </div>
+          <div class="total-row">
+            <span class="lbl">Total</span>
+            <span class="val js-total">R349</span>
+          </div>
 
-        <button class="btn" id="checkoutBtn">Add to Cart · Checkout</button>
-        <div class="pay-note"><span class="gold">⛉</span> Secure checkout via PayFast — coming soon</div>
+          <button class="btn js-checkout">Add to Cart · Checkout</button>
+          <div class="pay-note"><span class="gold">⛉</span> Secure checkout via PayFast — coming soon</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1272,6 +1353,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
           <li><a href="#features">Features</a></li>
           <li><a href="#how">How To Use</a></li>
           <li><a href="#works">Works On</a></li>
+          <li><a href="#coverage">Coverage</a></li>
           <li><a href="#compare">Compare</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -1350,29 +1432,32 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
     });
   });
 
-  /* ---- Quantity selector + total ---- */
-  var UNIT = 199;
-  var input = document.getElementById('qtyInput');
-  var minus = document.getElementById('qtyMinus');
-  var plus = document.getElementById('qtyPlus');
-  var totalEl = document.getElementById('total');
+  /* ---- Quantity selectors + per-card totals (handles every product card) ---- */
   function clamp(n){ if(isNaN(n)||n<1) return 1; if(n>99) return 99; return n; }
-  function render(){
-    var q = clamp(parseInt(input.value,10));
-    input.value = q;
-    totalEl.textContent = 'R' + (q*UNIT).toLocaleString('en-ZA');
-  }
-  minus.addEventListener('click', function(){ input.value = clamp(parseInt(input.value,10)-1); render(); });
-  plus.addEventListener('click', function(){ input.value = clamp(parseInt(input.value,10)+1); render(); });
-  input.addEventListener('input', render);
-  input.addEventListener('blur', render);
-  render();
-
-  /* ---- Checkout placeholder (PayFast wired later) ---- */
-  document.getElementById('checkoutBtn').addEventListener('click', function(){
-    var q = clamp(parseInt(input.value,10));
-    alert('Checkout coming soon!\n\n' + q + ' × SecureSeal 250g\nTotal: R' + (q*UNIT).toLocaleString('en-ZA') +
-          '\n\nSecure PayFast checkout is being wired in. No leaks. No excuses.');
+  Array.prototype.forEach.call(document.querySelectorAll('.order-card'), function(card){
+    var price = parseInt(card.getAttribute('data-price'),10) || 0;
+    var name = card.getAttribute('data-name') || 'SecureSeal';
+    var input = card.querySelector('.qty-input');
+    if(!input) return;
+    var minus = card.querySelector('.qty-minus');
+    var plus = card.querySelector('.qty-plus');
+    var totalEl = card.querySelector('.js-total');
+    var checkout = card.querySelector('.js-checkout');
+    function render(){
+      var q = clamp(parseInt(input.value,10));
+      input.value = q;
+      if(totalEl) totalEl.textContent = 'R' + (q*price).toLocaleString('en-ZA');
+    }
+    if(minus) minus.addEventListener('click', function(){ input.value = clamp(parseInt(input.value,10)-1); render(); });
+    if(plus) plus.addEventListener('click', function(){ input.value = clamp(parseInt(input.value,10)+1); render(); });
+    input.addEventListener('input', render);
+    input.addEventListener('blur', render);
+    if(checkout) checkout.addEventListener('click', function(){
+      var q = clamp(parseInt(input.value,10));
+      alert('Checkout coming soon!\n\n' + q + ' × ' + name + '\nTotal: R' + (q*price).toLocaleString('en-ZA') +
+            '\n\nSecure PayFast checkout is being wired in. No leaks. No excuses.');
+    });
+    render();
   });
 
   /* ---- Scroll reveal ---- */

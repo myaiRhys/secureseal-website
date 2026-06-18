@@ -407,12 +407,12 @@ h1,h2,h3,.display{
   border:1px solid rgba(var(--gold-rgb),0.12);pointer-events:none;
 }
 .tub-body::after{
-  content:"";position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--gold);z-index:6;
+  content:"";position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--gold);z-index:1;
 }
-/* Real wraparound packaging — drop product-label.png in the repo root */
+/* Real wraparound packaging — product-label.jpg in the repo root */
 .tub-label{
   position:absolute;inset:0;z-index:2;
-  background-image:url('product-label.png');
+  background-image:url('product-label.jpg');
   background-size:auto 100%;background-repeat:no-repeat;
   background-position:calc(50% + var(--lx,0px)) center;
 }

@@ -437,6 +437,15 @@ h1,h2,h3,.display{
   background:radial-gradient(ellipse at center,rgba(0,0,0,0.65),transparent 70%);
   filter:blur(7px);
 }
+/* WebGL 3D tub (mounts a canvas; falls back to the CSS tub above) */
+.tub3d{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(440px,88vw);height:min(460px,92vw);z-index:2;
+  touch-action:pan-y;
+}
+.tub3d canvas{display:block;width:100%!important;height:100%!important}
+.tub-stage.has3d .tub,
+.tub-stage.has3d .tub-contact{display:none}
 .tub-brand{
   font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
   letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;
@@ -1013,6 +1022,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 
     <div class="tub-stage reveal">
       <div class="tub-contact" aria-hidden="true"></div>
+      <div class="tub3d" id="tub3d" aria-hidden="true"></div>
       <div class="tub" id="tub">
         <div class="tub-float">
           <div class="tub-lid"></div>
@@ -1684,6 +1694,131 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 
   /* ---- Year ---- */
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+
+<!-- ============ HERO 3D PRODUCT (Three.js, progressive enhancement) ============ -->
+<script type="module">
+(async function tub3D(){
+  var mount = document.getElementById('tub3d');
+  if(!mount) return;
+  var stage = mount.closest('.tub-stage');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // WebGL support check — otherwise keep the CSS fallback tub
+  try{
+    var t = document.createElement('canvas');
+    if(!(t.getContext('webgl2') || t.getContext('webgl'))) return;
+  }catch(e){ return; }
+
+  var THREE;
+  try{
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  }catch(e){ return; }
+
+  // ----- Tuning constants -----
+  var R = 1.237, BH = 2.0;       // radius & height so the wide label wraps exactly once
+  var LABEL_OFFSET = 0.5;        // shifts the wrap so the SECURESEAL panel faces front
+  var FRONT = 0;                 // base yaw
+
+  var W = mount.clientWidth || 420, H = mount.clientHeight || 440;
+
+  var renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+  renderer.setSize(W, H);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  mount.appendChild(renderer.domElement);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(30, W/H, 0.1, 100);
+  camera.position.set(0, 0.65, 7.4);
+  camera.lookAt(0, -0.05, 0);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  var key = new THREE.DirectionalLight(0xffffff, 1.55);
+  key.position.set(-3.2, 5, 5);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024,1024);
+  key.shadow.camera.near = 1; key.shadow.camera.far = 22;
+  key.shadow.camera.left=-4; key.shadow.camera.right=4; key.shadow.camera.top=4; key.shadow.camera.bottom=-4;
+  key.shadow.bias = -0.0006;
+  scene.add(key);
+  var rim = new THREE.DirectionalLight(0xffd27a, 0.9); rim.position.set(4, 2.2, -3); scene.add(rim);
+  var fill = new THREE.DirectionalLight(0xbfe0ff, 0.22); fill.position.set(3, -1, 4); scene.add(fill);
+
+  var group = new THREE.Group(); scene.add(group);
+
+  var loader = new THREE.TextureLoader();
+  var tex = loader.load('product-label.jpg', function(){ renderer.render(scene, camera); });
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.center.set(0.5, 0.5);
+  tex.offset.x = LABEL_OFFSET;
+
+  var sideMat = new THREE.MeshStandardMaterial({map:tex, roughness:0.62, metalness:0.15});
+  var capMat  = new THREE.MeshStandardMaterial({color:0x14110d, roughness:0.55, metalness:0.3});
+  var body = new THREE.Mesh(new THREE.CylinderGeometry(R, R*0.985, BH, 120, 1, false), [sideMat, capMat, capMat]);
+  body.castShadow = true;
+  group.add(body);
+
+  var lidMat = new THREE.MeshStandardMaterial({color:0x1c1c1c, roughness:0.32, metalness:0.55});
+  var lid = new THREE.Mesh(new THREE.CylinderGeometry(R*1.06, R*1.015, 0.34, 120), lidMat);
+  lid.position.y = BH/2 + 0.11; lid.castShadow = true;
+  group.add(lid);
+
+  var ringMat = new THREE.MeshStandardMaterial({color:0xF7A823, roughness:0.4, metalness:0.6});
+  var ring = new THREE.Mesh(new THREE.TorusGeometry(R*0.66, 0.022, 14, 96), ringMat);
+  ring.rotation.x = Math.PI/2; ring.position.y = BH/2 + 0.285;
+  group.add(ring);
+
+  var ground = new THREE.Mesh(new THREE.PlaneGeometry(14,14), new THREE.ShadowMaterial({opacity:0.42}));
+  ground.rotation.x = -Math.PI/2; ground.position.y = -BH/2 - 0.2; ground.receiveShadow = true;
+  scene.add(ground);
+
+  if(stage) stage.classList.add('has3d');
+
+  // ----- Interaction -----
+  var hovering=false, pnx=0, pny=0;
+  var hero = document.querySelector('.hero') || stage;
+  var interactive = !reduce && window.matchMedia('(hover:hover)').matches;
+  if(interactive && hero){
+    hero.addEventListener('pointermove', function(e){
+      if(e.pointerType==='touch') return;
+      var r = hero.getBoundingClientRect();
+      pnx = (e.clientX-r.left)/r.width - 0.5;
+      pny = (e.clientY-r.top)/r.height - 0.5;
+      hovering = true;
+    });
+    hero.addEventListener('pointerleave', function(){ hovering=false; });
+  }
+
+  var curY=FRONT, curX=0, t0=performance.now(), tt=0, last=t0;
+  if(reduce){
+    group.rotation.set(0, FRONT, 0);
+    renderer.render(scene, camera);
+  } else {
+    (function frame(now){
+      requestAnimationFrame(frame);
+      var dt = Math.min((now-last)/1000, 0.05); last=now; tt+=dt;
+      var tgtY, tgtX, posY;
+      if(hovering){ tgtY = FRONT + pnx*0.7;  tgtX = -pny*0.26; posY = 0; }
+      else        { tgtY = FRONT + Math.sin(tt*0.5)*0.34; tgtX = Math.sin(tt*0.8)*0.05; posY = Math.sin(tt*1.15)*0.045; }
+      curY += (tgtY-curY)*0.07; curX += (tgtX-curX)*0.07;
+      group.rotation.y = curY; group.rotation.x = curX; group.position.y = posY;
+      renderer.render(scene, camera);
+    })(t0);
+  }
+
+  function onResize(){
+    W = mount.clientWidth || W; H = mount.clientHeight || H;
+    camera.aspect = W/H; camera.updateProjectionMatrix();
+    renderer.setSize(W, H);
+    if(reduce) renderer.render(scene, camera);
+  }
+  window.addEventListener('resize', onResize, {passive:true});
 })();
 </script>
 </body>

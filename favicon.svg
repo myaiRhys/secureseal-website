@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SecureSeal">
   <rect width="64" height="64" rx="10" fill="#0c0c0c"/>
   <!-- blueprint grid -->
-  <g stroke="#C8960A" stroke-opacity="0.18" stroke-width="1">
+  <g stroke="#F7A823" stroke-opacity="0.18" stroke-width="1">
     <path d="M16 6V58 M32 6V58 M48 6V58 M6 16H58 M6 32H58 M6 48H58"/>
   </g>
-  <rect x="6" y="6" width="52" height="52" rx="7" fill="none" stroke="#C8960A" stroke-width="2.5"/>
+  <rect x="6" y="6" width="52" height="52" rx="7" fill="none" stroke="#F7A823" stroke-width="2.5"/>
   <text x="32" y="42" text-anchor="middle" font-family="Arial Black, Arial, sans-serif"
-        font-weight="900" font-size="30" fill="#C8960A" letter-spacing="-1">SS</text>
+        font-weight="900" font-size="30" fill="#F7A823" letter-spacing="-1">SS</text>
 </svg>

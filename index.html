@@ -44,7 +44,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <!-- Structured data: Product + Offer + Ratings -->
 <script type="application/ld+json">
@@ -318,12 +318,24 @@ h1,h2,h3,.display{
   position:relative;z-index:2;width:100%;
 }
 .hero h1{
-  font-size:clamp(58px,9vw,96px);
+  font-family:'Anton','Barlow Condensed',sans-serif;
+  font-weight:400;            /* Anton ships a single heavy weight */
+  letter-spacing:0.005em;
+  line-height:0.9;
+  font-size:clamp(58px,9.5vw,104px);
   margin-bottom:24px;
+  filter:url(#grunge) drop-shadow(2px 3px 0 rgba(0,0,0,0.45));
 }
 .hero h1 .stamp{
-  display:block;color:var(--gold);
-  -webkit-text-stroke:1px var(--gold-line);
+  display:block;
+  background:linear-gradient(176deg,var(--gold-light) 0%,var(--gold) 52%,#b97e10 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-stroke:0;
+}
+/* Older/unsupported browsers: fall back to a solid amber fill */
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero h1 .stamp{color:var(--gold)}
 }
 .hero-sub{
   font-size:19px;color:var(--off-white);max-width:520px;margin-bottom:32px;
@@ -387,11 +399,20 @@ h1,h2,h3,.display{
   letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;
 }
 .tub-hero-word{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:62px;line-height:.85;color:var(--gold);text-transform:uppercase;
+  font-family:'Anton','Barlow Condensed',sans-serif;font-weight:400;
+  font-size:64px;line-height:.85;text-transform:uppercase;letter-spacing:0.01em;
+  background:linear-gradient(176deg,var(--gold-light) 0%,var(--gold) 55%,#b97e10 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
   text-shadow:2px 2px 0 rgba(0,0,0,0.5);
 }
-.tub-hero-word small{display:block;font-size:28px;color:var(--white);-webkit-text-stroke:0}
+.tub-hero-word small{
+  display:block;font-size:28px;font-family:'Barlow Condensed',sans-serif;
+  background:none;-webkit-text-fill-color:var(--white);color:var(--white);-webkit-text-stroke:0;
+}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  .tub-hero-word{color:var(--gold)}
+}
 .tub-desc{
   font-size:9px;letter-spacing:0.18em;color:var(--off-white);text-transform:uppercase;
   margin-top:10px;border-top:1px solid var(--gold-line);padding-top:8px;width:80%;
@@ -869,6 +890,24 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 </style>
 </head>
 <body class="blueprint">
+
+<!-- Grunge filter for the hero wordmark: roughens edges + sparse worn specks -->
+<svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="grunge" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <!-- distress the outline -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.014 0.02" numOctaves="3" seed="11" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <!-- sparse worn pinholes -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="6" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.7 0.7 0.7 0 0" result="grainA"/>
+      <feComponentTransfer in="grainA" result="specks">
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 0 1"/>
+      </feComponentTransfer>
+      <feComposite in="rough" in2="specks" operator="out"/>
+    </filter>
+  </defs>
+</svg>
 
 <div class="scroll-water" id="scrollWater" aria-hidden="true"></div>
 

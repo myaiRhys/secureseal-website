@@ -78,13 +78,7 @@
       "returnMethod":"https://schema.org/ReturnByMail",
       "returnFees":"https://schema.org/FreeReturn"
     }
-  },
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"3","bestRating":"5","worstRating":"1"},
-  "review":[
-    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Johan B."},"reviewBody":"Sealed the seams on my rooftop tent before the Karoo trip. Two storms, bone dry inside. This stuff actually works."},
-    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Marie K."},"reviewBody":"I run a campsite and patch canvas constantly. SecureSeal flexes with the fabric and doesn't go brittle in the heat. Bought six tubs."},
-    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Sipho M."},"reviewBody":"Old awning was leaking everywhere. One coat and it's like new. Tough, gold-standard finish. Proudly local product."}
-  ]
+  }
 }
 </script>
 
@@ -543,23 +537,6 @@ h1,h2,h3,.display{
 .track-record h3 .ice{color:var(--gold)}
 .track-record p{color:var(--off-white);font-size:16px;max-width:720px}
 
-/* ---------- Reviews ---------- */
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.review{
-  background:var(--bg-panel);border:1px solid var(--gold-faint);
-  padding:30px;position:relative;
-}
-.review::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);
-}
-.stars{color:var(--gold);letter-spacing:3px;font-size:15px;margin-bottom:14px}
-.review p{color:var(--off-white);font-size:15px;margin-bottom:18px}
-.review .who{
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;
-  letter-spacing:0.04em;font-size:16px;
-}
-.review .loc{font-size:12px;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em}
-
 /* ---------- Features ---------- */
 .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--gold-faint)}
 .feature{
@@ -823,7 +800,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
   .features-grid{grid-template-columns:repeat(2,1fr)}
   .feature{border-bottom:1px solid var(--gold-faint)}
   .feature:nth-child(2n){border-right:none}
-  .steps,.reviews-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
   .surfaces{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:800px){
@@ -846,7 +823,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 @media(max-width:480px){
   .wrap{padding:0 18px}
   .track-record{padding:30px 22px}
-  .reviews-grid,.steps,.features-grid,.surfaces,.order-benefits-row{grid-template-columns:1fr}
+  .steps,.features-grid,.surfaces,.order-benefits-row{grid-template-columns:1fr}
   .feature{border-right:none}
   .surfaces{gap:12px}
   .stat-row{grid-template-columns:1fr;}
@@ -918,8 +895,8 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 }
 
 /* --- Depth: card tilt + hover lift --- */
-.feature,.review,.surface,.step,.order-card{will-change:transform}
-.review:hover,.step:hover,.order-card:hover{
+.feature,.surface,.step,.order-card{will-change:transform}
+.step:hover,.order-card:hover{
   box-shadow:0 26px 50px rgba(0,0,0,0.5),0 0 0 1px var(--gold-line);
 }
 
@@ -1055,37 +1032,6 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
     <div class="trust-item reveal"><span class="ic gold">✦</span><span class="t">UV-Stable Flex Formula</span><span class="d">Moves with the fabric</span></div>
     <div class="trust-item reveal"><span class="ic gold">✓</span><span class="t">30-Day Guarantee</span><span class="d">No questions asked</span></div>
     <div class="trust-item reveal"><span class="ic gold">◆</span><span class="t">250g from R199 · 500g from R349</span><span class="d">Two sizes available</span></div>
-  </div>
-</section>
-
-<!-- ============ REVIEWS ============ -->
-<section class="section hatch" id="reviews">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="kicker" style="justify-content:center">Field Tested</span>
-      <h2>Trusted on the road</h2>
-      <p>Campers, overlanders and 4x4 crews who've put SecureSeal through real African weather.</p>
-    </div>
-    <div class="reviews-grid">
-      <div class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Sealed the seams on my rooftop tent before the Karoo trip. Two storms, bone dry inside. This stuff actually works."</p>
-        <div class="who">Johan B.</div>
-        <div class="loc">Overlander · Western Cape</div>
-      </div>
-      <div class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p>"I run a campsite and patch canvas constantly. SecureSeal flexes with the fabric and doesn't go brittle in the heat. Bought six tubs."</p>
-        <div class="who">Marie K.</div>
-        <div class="loc">Campsite Owner · Free State</div>
-      </div>
-      <div class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Old awning was leaking everywhere. One coat and it's like new. Tough, gold-standard finish. Proudly local product."</p>
-        <div class="who">Sipho M.</div>
-        <div class="loc">4x4 Enthusiast · Gauteng</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1613,7 +1559,7 @@ footer{background:var(--bg-secondary);border-top:1px solid var(--gold-line);padd
 
   /* ---- Depth: 3D tilt on cards ---- */
   if(!reduced && canHover){
-    document.querySelectorAll('.feature,.review,.surface,.step,.order-card').forEach(function(el){
+    document.querySelectorAll('.feature,.surface,.step,.order-card').forEach(function(el){
       el.addEventListener('mouseenter', function(){ el.style.transition = 'transform .12s ease-out, box-shadow .25s ease'; });
       el.addEventListener('mousemove', function(e){
         var r = el.getBoundingClientRect();

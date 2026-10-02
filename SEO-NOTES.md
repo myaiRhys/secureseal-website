@@ -11,7 +11,7 @@ On-page SEO and content optimisation applied to `index.html` plus supporting fil
 - Full Open Graph set (url, image, site_name, locale, product price/availability) + Twitter `summary_large_image`.
 
 **Structured data (JSON-LD)** — drives Google rich results:
-- `Product` with `Offer` (ZAR 199, InStock, 30-day return policy), `AggregateRating` and on-page `Review`s.
+- `Product` with `Offer` (ZAR 199, InStock, 30-day return policy). No ratings or reviews until real, verifiable customer reviews exist.
 - `FAQPage` mirroring the 7 visible FAQ items (eligible for FAQ rich snippets).
 - `Organization` (legal name True Motives CC, Cape Town, area served South Africa).
 
@@ -26,10 +26,10 @@ On-page SEO and content optimisation applied to `index.html` plus supporting fil
 
 ## Action items before / after launch
 
-1. **Domain** — all absolute URLs assume `https://secureseal.co.za/`. If the live domain differs, find/replace it in `index.html`, `robots.txt`, `sitemap.xml`.
-2. **Social image format** — `og-image.svg` is provided, but Facebook/WhatsApp/LinkedIn render PNG/JPG most reliably. Export `og-image.svg` to a 1200×630 **`og-image.jpg`** and switch the `og:image` / `twitter:image` URLs to it.
+1. **Domain** — the site currently lives at `https://myairhys.github.io/secureseal-website/`, and every absolute URL (canonical, og:url, schema, `robots.txt`, `sitemap.xml`) points there so Google indexes the page that actually exists. When `secureseal.co.za` goes live, find/replace `https://myairhys.github.io/secureseal-website/` with `https://secureseal.co.za/` in `index.html`, `robots.txt` and `sitemap.xml`.
+2. **Social image** — `og-image.jpg` (1200×630) is rendered from `og-image.svg`; social and product URLs use the JPG. Re-export it if the SVG changes.
 3. **Search Console** — verify the property and submit `sitemap.xml`; create a Google Business Profile (Cape Town) for local/maps traffic.
-4. **Reviews** — `AggregateRating` reflects the 3 testimonials on the page. Keep schema reviews in sync with real, on-page reviews as they grow (don't inflate).
+4. **Reviews** — there are none yet. Only add a reviews section and `AggregateRating` once real customers have reviewed the product, and keep schema in sync with what's on the page.
 5. **Validate** — run the page through Google Rich Results Test and the Schema Markup Validator after deploy.
 
 ## Off-page / traffic growth (not code)

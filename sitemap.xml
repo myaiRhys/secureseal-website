@@ -2,12 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://secureseal.co.za/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://myairhys.github.io/secureseal-website/</loc>
+    <lastmod>2026-09-30</lastmod>
     <image:image>
-      <image:loc>https://secureseal.co.za/og-image.svg</image:loc>
+      <image:loc>https://myairhys.github.io/secureseal-website/og-image.jpg</image:loc>
       <image:title>SecureSeal Fabric Waterproofer &amp; Seam Seal</image:title>
     </image:image>
   </url>
